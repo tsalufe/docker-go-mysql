@@ -1,0 +1,31 @@
+version: '3.1'
+services:
+  app:
+    image: gogogoimage
+    container_name: gogogodocker
+    build: .
+    networks:
+      - gogogo-net
+    volumes:
+      - ../:/gogogospace
+    ports:
+      - 8480:80
+  db:
+    image: woahbase/alpine-mysql:x86_64
+    container_name: alpine-mysql
+    networks:
+      - gogogo-net
+    volumes:
+      - data-volume:/var/lib/mysql
+      - /etc/hosts:/etc/hosts:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_USER: gogogoapp
+      MYSQL_USER_PWD: secret
+      MYSQL_USER_DB: gogogodb
+    ports: 
+     - 3306:3306
+volumes:
+  data-volume:
+networks:
+  gogogo-net:
