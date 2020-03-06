@@ -1,10 +1,10 @@
-# docker-go-node-mysql
-Just a light-weighted(490M for golang+nodejs, 266MB for mysql/mariadb) local environment for developers using golang, nodejs, and mysql stack. No nginx is needed for local development, though you have to set up upstream for bionic or nodejs servers.
+# docker-go-mysql
+Just a light-weighted(490M for golang, 266MB for mysql/mariadb) local environment for developers using golang, and mysql stack. No nginx is needed for local development, though you have to set up upstream for bionic servers.
 
 ## Your workspace structure
 Clone this repository into your workspace folder with the following structure
 - workspace/
-  - docker-go-nodejs-mysql/
+  - docker-go-mysql/
   - project 1
   - project 2
   - ...
