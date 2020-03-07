@@ -64,13 +64,13 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
 # install apk packages
-RUN apk add curl \
+RUN apk add --no-cache curl \
+    tzdata \
     wget \
     git \
-    bash
-
+    bash; \
 # install go packages
-RUN go get -u github.com/go-sql-driver/mysql \
+    go get -u github.com/go-sql-driver/mysql \
     github.com/gin-gonic/gin \
     golang.org/x/oauth2/google \
     google.golang.org/api/gmail/v1; \
@@ -83,6 +83,9 @@ RUN go get -u github.com/go-sql-driver/mysql \
     mv /go/src/google.golang.org/temp/option/ /go/src/google.golang.org/api/; \
     mv /go/src/google.golang.org/temp/transport/ /go/src/google.golang.org/api/; \
 	rm -rf /go/src/google.golang.org/temp/
+
+ENV TZ=America/New_York
+RUN echo PS1=\"\\t \\u@\\w $\" >> ~/.bashrc
 
 WORKDIR /gogogodocker
 COPY . /gogogodocker
