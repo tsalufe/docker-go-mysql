@@ -73,9 +73,9 @@ RUN apk add curl \
 RUN go get -u github.com/go-sql-driver/mysql \
     github.com/gin-gonic/gin \
     golang.org/x/oauth2/google \
-    google.golang.org/api/gmail/v1
+    google.golang.org/api/gmail/v1; \
 # remove redundant google api's and leave gmail api only
-RUN mv /go/src/google.golang.org/api /go/src/google.golang.org/temp; \
+    mv /go/src/google.golang.org/api /go/src/google.golang.org/temp; \
     mkdir -p /go/src/google.golang.org/api/; \
     mv /go/src/google.golang.org/temp/gmail/ /go/src/google.golang.org/api/; \
     mv /go/src/google.golang.org/temp/googleapi/ /go/src/google.golang.org/api/; \
